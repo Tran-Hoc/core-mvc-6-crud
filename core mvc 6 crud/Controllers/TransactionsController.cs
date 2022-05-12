@@ -48,7 +48,7 @@ namespace core_mvc_6_crud.Controllers
         public IActionResult AddorEdit(int id = 0)
         {
             if (id == 0)
-                return View(new Transaction());
+                 return View(new Transaction());
             else
                 return View(_context.Transactions.Find(id));
         }
@@ -64,8 +64,8 @@ namespace core_mvc_6_crud.Controllers
             {
                 if(transaction.TransactionId == 0)
                 {
-                    transaction.Date = DateTime.Now;
-                    _context.Add(transaction);
+                transaction.Date = DateTime.Now;
+                _context.Add(transaction);
                 }
                 else
                 {
@@ -79,55 +79,55 @@ namespace core_mvc_6_crud.Controllers
         }
 
         // GET: Transactions/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Transactions == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null || _context.Transactions == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var transaction = await _context.Transactions.FindAsync(id);
-            if (transaction == null)
-            {
-                return NotFound();
-            }
-            return View(transaction);
-        }
+        //    var transaction = await _context.Transactions.FindAsync(id);
+        //    if (transaction == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(transaction);
+        //}
 
-        // POST: Transactions/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TransactionId,AccountNumber,BeneficiaryName,BankName,SWIFTcode,Amount,Date")] Transaction transaction)
-        {
-            if (id != transaction.TransactionId)
-            {
-                return NotFound();
-            }
+        //// POST: Transactions/Edit/5
+        //// To protect from overposting attacks, enable the specific properties you want to bind to.
+        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("TransactionId,AccountNumber,BeneficiaryName,BankName,SWIFTcode,Amount,Date")] Transaction transaction)
+        //{
+        //    if (id != transaction.TransactionId)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(transaction);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TransactionExists(transaction.TransactionId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(transaction);
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(transaction);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!TransactionExists(transaction.TransactionId))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(transaction);
+        //}
 
         // GET: Transactions/Delete/5
         public async Task<IActionResult> Delete(int? id)
